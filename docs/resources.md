@@ -2,6 +2,8 @@
 
 - [How to Enable Server-Side Rendering for a React App](https://www.digitalocean.com/community/tutorials/react-server-side-rendering) – a tutorial published at Digital Ocean, initially from Alligator.io, originally published in 2018
 - [Hot module replacement in a custom server-side-rendered React app](https://medium.com/swlh/step-by-step-guide-to-enable-hot-module-replacement-in-a-custom-server-side-rendered-react-app-cb9be0c0747e)
+- [Adding server-side rendering support for an existing React application](https://medium.com/front-end-weekly/adding-a-server-side-rendering-support-for-an-existing-react-application-using-express-and-webpack-5a3d60cf9762)
+- [Server rendering with React and React Router v5](https://ui.dev/react-router-v5-server-rendering/)
 
 
 ## Examples on GitHub

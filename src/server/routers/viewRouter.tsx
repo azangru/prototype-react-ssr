@@ -9,17 +9,19 @@ const viewRouter = (req: Request, res: Response) => {
     <App />
   );
 
+  // FIXME: use webpack manifest for access to assets
   const responseString = `
     <!DOCTYPE html>
     <html lang="en">
     <head>
       <title>Title of the document</title>
+      <link rel="stylesheet" href="http://localhost:8081/staticclient.css">
     </head>
     <body>
     
     <div id="app-root">${markup}</div>
     
-    <script src="/client.js"></script>
+      <script src="http://localhost:8081/staticclient.js"></script>
     </body>
     </html>
   `;
@@ -29,10 +31,3 @@ const viewRouter = (req: Request, res: Response) => {
 
 export default viewRouter;
 
-
-
-// const markup = renderToString(
-//   <StaticRouter context={context} location={req.url}>
-//     <App routes={routes} initialData={data} />
-//   </StaticRouter>
-// );
