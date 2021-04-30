@@ -19,7 +19,8 @@ export default (env: Record<string, unknown>): Configuration => {
     },
     output: {
       path: path.resolve(__dirname, '../dist/server'),
-      filename: 'server.js'
+      filename: 'server.js',
+      assetModuleFilename: 'assets/[hash][ext][query]'
     },
     module: {
       rules: [

@@ -4,7 +4,7 @@ import viewRouter from './routers/viewRouter';
 
 const app = express();
 
-app.get('/', viewRouter);
+app.get('*', viewRouter);
 
 
 export default app;

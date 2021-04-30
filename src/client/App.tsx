@@ -1,21 +1,26 @@
-import React, { useState, StrictMode } from 'react';
+import React, { StrictMode } from 'react';
+import {
+  Switch,
+  Route
+} from 'react-router-dom';
 
-// @ts-expect-error
-import reactIconUrl from './images/react-icon.png';
+import FirstPage from './FirstPage';
+import SecondPage from './SecondPage';
 
 import './App.css';
 
 const App = () => {
-  const [count, setCount] = useState(0);
 
   return (
     <StrictMode>
-      <h1>This is sparta?!!</h1>
-      <div>{count}</div>
-      <button onClick={() => setCount(count + 1)}>
-        Plus one
-      </button>
-      <img className="test-image" src={reactIconUrl} />
+      <Switch>
+        <Route exact path="/">
+          <FirstPage />
+        </Route>
+        <Route path="/second">
+          <SecondPage />
+        </Route>
+      </Switch>
     </StrictMode>
   );
 }
