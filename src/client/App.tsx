@@ -1,11 +1,8 @@
 import React, { StrictMode } from 'react';
-import {
-  Switch,
-  Route
-} from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 
-import FirstPage from './FirstPage';
-import SecondPage from './SecondPage';
+import Routes from './routes/Routes';
 
 import './App.css';
 
@@ -13,16 +10,22 @@ const App = () => {
 
   return (
     <StrictMode>
-      <Switch>
-        <Route exact path="/">
-          <FirstPage />
-        </Route>
-        <Route path="/second">
-          <SecondPage />
-        </Route>
-      </Switch>
+      <Meta />
+      <Navigation />
+      <Routes />
     </StrictMode>
   );
 }
+
+const Navigation = () => (
+  <nav>
+    <Link to="/">Main</Link>
+  </nav>
+);
+
+
+const Meta = () => (
+  <Helmet defaultTitle="Test React Server-Side Rendering" />
+)
 
 export default App;

@@ -7,6 +7,7 @@ export default (env: Record<string, unknown>): Configuration => {
   return {
     mode: env.dev ? 'development' : 'production',
     watch: true,
+    devtool: "eval-cheap-source-map",
     entry: {
       client: [
         path.resolve(__dirname, '../src/client/index.tsx')

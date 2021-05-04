@@ -11,8 +11,8 @@
 ## Core functionality
 - [x] Can generate html strings dynamically server-side (server-side rendering)
 - [x] Router works
-- [ ] Load data on the server
+- [x] Load data on the server
 - [ ] Code splitting / lazy loading
-- [ ] Redux
+- [x] Redux
 - [ ] Be able to differentially render only some pages
-- [ ] Metadata (React helmet)
+- [x] Metadata (React helmet)
