@@ -12,7 +12,7 @@
 - [x] Can generate html strings dynamically server-side (server-side rendering)
 - [x] Router works
 - [x] Load data on the server
-- [ ] Code splitting / lazy loading
+- [x] Code splitting / lazy loading
 - [x] Redux
 - [ ] Be able to differentially render only some pages
 - [x] Metadata (React helmet)

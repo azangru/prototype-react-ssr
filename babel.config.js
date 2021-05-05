@@ -19,6 +19,9 @@ module.exports = (api) => {
       ],
       "@babel/preset-react",
       '@babel/typescript',
+    ],
+    plugins: [
+      "@loadable/babel-plugin"
     ]
   };
 };

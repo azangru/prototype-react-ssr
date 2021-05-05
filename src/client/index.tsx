@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { loadableReady } from '@loadable/component';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { HelmetProvider } from 'react-helmet-async';
@@ -16,13 +17,15 @@ if ('hot' in module) {
 const preloadedState = (window as any).__PRELOADED_STATE__;
 const store = getReduxStore(preloadedState);
 
-ReactDOM.hydrate(
-  <Provider store={store}>
-    <BrowserRouter>
-      <HelmetProvider>
-        <App />
-      </HelmetProvider>
-    </BrowserRouter>
-  </Provider>,
-  document.getElementById('app-root')
-);
+loadableReady(() => {
+  ReactDOM.hydrate(
+    <Provider store={store}>
+      <BrowserRouter>
+        <HelmetProvider>
+          <App />
+        </HelmetProvider>
+      </BrowserRouter>
+    </Provider>,
+    document.getElementById('app-root')
+  );
+});

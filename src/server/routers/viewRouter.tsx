@@ -1,3 +1,4 @@
+import path from 'path';
 import { Request, Response } from 'express';
 import React from 'react';
 import { renderToString } from 'react-dom/server';
@@ -5,11 +6,18 @@ import serialize from 'serialize-javascript';
 import { StaticRouter, matchPath } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { HelmetProvider, FilledContext } from 'react-helmet-async';
+import { ChunkExtractor } from '@loadable/server';
 
 import routesConfig from '../../client/routes/routesConfig';
 
 import App from '../../client/App';
 import getReduxStore from '../../client/state/store';
+
+const statsFile = path.resolve('./dist/loadable-stats.json'); // FIXME: this path will be different for production build
+const extractor = new ChunkExtractor({
+  statsFile,
+  entrypoints: ['client']
+});
 
 const viewRouter = async (req: Request, res: Response) => {
   const reduxStore = getReduxStore();
@@ -27,8 +35,7 @@ const viewRouter = async (req: Request, res: Response) => {
 
   await Promise.all( dataRequirements );
 
-
-  const markup = renderToString(
+  const ReactApp = (
     <Provider store={reduxStore}>
       <StaticRouter location={req.url} context={{}}>
         <HelmetProvider context={helmetContext}>
@@ -37,6 +44,10 @@ const viewRouter = async (req: Request, res: Response) => {
       </StaticRouter>
     </Provider>
   );
+
+  const jsx = extractor.collectChunks(ReactApp);
+
+  const markup = renderToString(jsx);
 
   const helmet = (helmetContext as FilledContext).helmet;
 
@@ -47,7 +58,8 @@ const viewRouter = async (req: Request, res: Response) => {
     <head>
       ${helmet.title.toString()}
       ${helmet.meta.toString()}
-      <link rel="stylesheet" href="http://localhost:8081/static/client.css">
+      ${extractor.getLinkTags()}
+      ${extractor.getStyleTags()}
     </head>
     <body>
     
@@ -56,7 +68,7 @@ const viewRouter = async (req: Request, res: Response) => {
       <script>
         window.__PRELOADED_STATE__ = ${serialize(reduxStore.getState())}
       </script>
-      <script src="http://localhost:8081/static/client.js"></script>
+      ${extractor.getScriptTags()}
     </body>
     </html>
   `;

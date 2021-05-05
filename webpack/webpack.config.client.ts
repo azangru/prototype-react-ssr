@@ -2,6 +2,8 @@ import path from 'path';
 import webpack, { Configuration } from 'webpack';
 import { WebpackManifestPlugin } from 'webpack-manifest-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+// @ts-ignore
+import LoadablePlugin from '@loadable/webpack-plugin';
 
 export default (env: Record<string, unknown>): Configuration => {
   return {
@@ -46,6 +48,9 @@ export default (env: Record<string, unknown>): Configuration => {
       new MiniCssExtractPlugin(),
       new WebpackManifestPlugin({
         writeToFileEmit: true
+      }),
+      new LoadablePlugin({
+        writeToDisk: true
       })
     ]
   };
