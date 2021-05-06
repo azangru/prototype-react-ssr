@@ -15,12 +15,13 @@ import App from '../../client/App';
 import getReduxStore from '../../client/state/store';
 
 const statsFile = path.resolve(__dirname, '../loadable-stats.json');
-const extractor = new ChunkExtractor({
-  statsFile,
-  entrypoints: ['client']
-});
 
 const viewRouter = async (req: Request, res: Response) => {
+  // maintainers say to run the extractor during every request
+  const extractor = new ChunkExtractor({
+    statsFile,
+    entrypoints: ['client']
+  });
   const reduxStore = getReduxStore();
   const helmetContext = {};
 

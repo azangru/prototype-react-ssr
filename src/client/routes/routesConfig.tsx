@@ -1,7 +1,6 @@
-import React from 'react';
-import loadable from "@loadable/component";
-import { serverFetch as mainPageServerFetch } from '../pages/MainPage';
-import { serverFetch as secondPageServerFetch } from '../pages/SecondPage';
+import MainPage, { serverFetch as mainPageServerFetch } from '../pages/MainPage';
+import SecondPage, { serverFetch as secondPageServerFetch } from '../pages/SecondPage';
+import CounterPage from '../pages/CounterPage';
 
 import { ReduxStore } from '../state/store';
 
@@ -20,25 +19,29 @@ type RoutesConfig = {
 //   fallback: <div>Loading...</div>
 // });
 
-const LoadableMainPage = loadable(() => import('../pages/MainPage'), {
-  fallback: <div>Loading...</div>
-});
+// const LoadableMainPage = loadable(() => import('../pages/MainPage'), {
+//   fallback: <div>Loading...</div>
+// });
 
-const LoadableSecondPage = loadable(() => { console.log('loadable'); return import('../pages/SecondPage')}, {
-  fallback: <div>Loading...</div>
-});
+// const LoadableSecondPage = loadable(() => { console.log('loadable'); return import('../pages/SecondPage')}, {
+//   fallback: <div>Loading...</div>
+// });
 
 const routes: RoutesConfig = [
   {
     path: "/",
     exact: true,
     serverFetch: mainPageServerFetch,
-    component: LoadableMainPage
+    component: MainPage
   },
   {
     path: "/character/:id",
     serverFetch: secondPageServerFetch,
-    component: LoadableSecondPage
+    component: SecondPage
+  },
+  {
+    path: "/counter",
+    component: CounterPage
   }
 ];
 

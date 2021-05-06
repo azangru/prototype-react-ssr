@@ -20,6 +20,8 @@ const App = () => {
 const Navigation = () => (
   <nav>
     <Link to="/">Main</Link>
+    {'   '}
+    <Link to="/counter">Counter</Link>
   </nav>
 );
 
