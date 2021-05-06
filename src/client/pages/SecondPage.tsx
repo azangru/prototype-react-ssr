@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import type { match } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
@@ -9,6 +8,7 @@ import {
   selectFullCharacter
 } from '../state/starWars';
 
+import type { match } from 'react-router-dom';
 import { ReduxStore } from '../state/store';
 
 const SecondPage = () => {
@@ -40,7 +40,7 @@ const SecondPage = () => {
   );
 };
 
-const serverFetch = async ({match, store}: {match: match<{id: string}>, store: ReduxStore}) => {
+export const serverFetch = async ({match, store}: {match: match<{id: string}>, store: ReduxStore}) => {
   const characterId = match.params.id;
   return await store.dispatch(fetchFullCharacterInfo(characterId));
 };

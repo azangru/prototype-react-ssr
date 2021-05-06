@@ -7,6 +7,7 @@
 - [x] Enable hot module replacement for the client
 - [x] Enable fast incremental rebuilds of the rendering server for speedy development
 - [ ] React Fast Refresh for the client
+- [ ] Production build
 
 ## Core functionality
 - [x] Can generate html strings dynamically server-side (server-side rendering)

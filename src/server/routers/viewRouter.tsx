@@ -27,10 +27,10 @@ const viewRouter = async (req: Request, res: Response) => {
     routesConfig
       .filter( route => matchPath(req.url, route) ) // filter matching paths
       // .map( route => route.component ) // map to components
-      .filter( route => (route.component as any).serverFetch ) // check if components have data requirement
+      .filter( route => route.serverFetch ) // check if components have data requirement
       .map( route => {
-        const match = matchPath(req.url, route);
-        return (route.component as any).serverFetch({ match, store: reduxStore });
+        const match = matchPath(req.url, route); // FIXME: this was already done a couple of lines back; no need to do it again
+        return route?.serverFetch?.({ match, store: reduxStore });
       }); // dispatch data requirement
 
   await Promise.all( dataRequirements );

@@ -46,7 +46,7 @@ const MainPage = () => {
   );
 };
 
-const serverFetch = async ({ store }: { store: ReduxStore }) => {
+export const serverFetch = async ({ store }: { store: ReduxStore }) => {
   return await store.dispatch(fetchAllCharacters());
 };
 

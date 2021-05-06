@@ -18,7 +18,7 @@ export default (env: Record<string, unknown>): Configuration => {
     output: {
       path: path.resolve(__dirname, '../dist'),
       publicPath: '/static/',
-      filename: 'client.js',
+      filename: '[name].js',
       assetModuleFilename: 'assets/[hash][ext][query]'
     },
     module: {
