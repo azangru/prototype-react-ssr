@@ -9,11 +9,12 @@ import { HelmetProvider, FilledContext } from 'react-helmet-async';
 import { ChunkExtractor } from '@loadable/server';
 
 import routesConfig from '../../client/routes/routesConfig';
+// import statsFile from '../../../dist/loadable-stats.json';
 
 import App from '../../client/App';
 import getReduxStore from '../../client/state/store';
 
-const statsFile = path.resolve('./dist/loadable-stats.json'); // FIXME: this path will be different for production build
+const statsFile = path.resolve(__dirname, '../loadable-stats.json');
 const extractor = new ChunkExtractor({
   statsFile,
   entrypoints: ['client']

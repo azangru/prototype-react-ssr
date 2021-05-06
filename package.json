@@ -1,7 +1,7 @@
 {
   "scripts": {
     "start": "ts-node --project tsconfig.tooling.json scripts/startSSR",
-    "dev-server": "webpack --config ./webpack/webpack.config.server.js --env dev"
+    "build": "rm -rf ./dist && ts-node --project tsconfig.tooling.json scripts/build"
   },
   "dependencies": {
     "@reduxjs/toolkit": "1.5.1",

@@ -6,9 +6,10 @@ import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import LoadablePlugin from '@loadable/webpack-plugin';
 
 export default (env: Record<string, unknown>): Configuration => {
+  const isDevelopment: boolean = env.dev as boolean | undefined ?? false;
   return {
-    mode: env.dev ? 'development' : 'production',
-    watch: true,
+    mode: isDevelopment ? 'development' : 'production',
+    watch: isDevelopment,
     devtool: "eval-cheap-source-map",
     entry: {
       client: [

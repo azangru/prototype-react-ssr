@@ -6,10 +6,11 @@ import nodeExternals from 'webpack-node-externals';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 
 export default (env: Record<string, unknown>): Configuration => {
+  const isDevelopment: boolean = env.dev as boolean | undefined ?? false;
   return {
-    mode: env.dev ? 'development' : 'production',
+    mode: isDevelopment ? 'development' : 'production',
     target: 'node',
-    watch: true,
+    watch: isDevelopment,
     entry: {
       server: path.resolve(__dirname, '../src/server/index.ts')
       // main: [
@@ -19,6 +20,7 @@ export default (env: Record<string, unknown>): Configuration => {
     },
     output: {
       path: path.resolve(__dirname, '../dist/server'),
+      // publicPath: path.resolve(__dirname, '../dist'),
       filename: 'server.js',
       assetModuleFilename: 'assets/[hash][ext][query]'
     },
@@ -50,9 +52,10 @@ export default (env: Record<string, unknown>): Configuration => {
       // new webpack.HotModuleReplacementPlugin(),
       new webpack.NoEmitOnErrorsPlugin(),
       new MiniCssExtractPlugin(),
-      // new webpack.DefinePlugin({
-      //   'process.env.WEBPACK_DIRECTORY': JSON.stringify(__dirname)
-      // }),
+      new webpack.DefinePlugin({
+        // 'global.foo': JSON.stringify('FOO!!!')
+        // 'process.env.CH': JSON.stringify(__dirname)
+      }),
       // new StartServerPlugin()
     ]
   };
