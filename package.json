@@ -1,7 +1,8 @@
 {
   "scripts": {
     "start": "ts-node --project tsconfig.tooling.json scripts/startSSR",
-    "build": "rm -rf ./dist && ts-node --project tsconfig.tooling.json scripts/build"
+    "build": "rm -rf ./dist && ts-node --project tsconfig.tooling.json scripts/build",
+    "build-analyze": "TS_NODE_PROJECT=\"tsconfig.tooling.json\" webpack --config ./webpack/webpack.config.client.ts --env prod --analyze"
   },
   "dependencies": {
     "@reduxjs/toolkit": "1.5.1",
@@ -47,6 +48,7 @@
     "ts-node": "9.1.1",
     "typescript": "4.2.4",
     "webpack": "5.36.2",
+    "webpack-bundle-analyzer": "4.4.1",
     "webpack-cli": "4.6.0",
     "webpack-dev-middleware": "4.1.0",
     "webpack-hot-middleware": "2.25.0",
